@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<ruleset name="Humanity Donations Salesforce Adapter" namespace="BigBite">
+  <description>PHPCS linting rules for the Humanity Donations Salesforce Adapter WP plugin</description>
+  <rule ref="./vendor/bigbite/phpcs-config/BigBite" />
+</ruleset>

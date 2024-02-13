@@ -1,0 +1,88 @@
+os: linux
+dist: jammy
+language: php
+php:
+  - 8.2
+
+cache:
+  npm: true
+  yarn: true
+  directories:
+  - "$HOME/.composer/cache"
+  - "$HOME/.yarn"
+  - "./private/node_modules"
+  - "./vendor"
+
+before_install:
+- phpenv config-rm xdebug.ini
+
+install:
+- composer install
+- nvm install 20 && nvm use 20
+- corepack enable
+- cd private && yarn && cd ..
+
+stages:
+  - name: Lint
+    if: branch IS present
+  - name: Update Draft Release [DEV]
+    if: branch = develop AND type != pull_request
+  - name: Update Draft Release [STG]
+    if: branch = staging AND type != pull_request
+  - name: Update Draft Release [PRD]
+    if: branch = main AND type != pull_request
+
+jobs:
+  include:
+  - stage: Lint
+    script:
+    - cd private && yarn && yarn build && cd ..
+    - composer lint
+
+  - stage: Update Draft Release [DEV]
+    script:
+    - cd private && yarn && yarn build && cd ..
+    - zip -r ../humanity-donations-salesforce-adapter-develop.zip ./ -x docs\* -x private\* -x vendor\* -x .\* -x CHANGELOG.md -x CODE_OF_CONDUCT.md -x composer.json -x composer.lock -x CONTRIBUTING.md -x LICENSE.md -x phpcs.xml -x SECURITY.md
+    deploy:
+      provider: releases
+      token:
+        secure: "OHbhgpXMyavB9AA6wdU9sSCC1AbTpCm01ZD9+buz7ti3JWmXeyK6GS80Liz76mdkOCuwwCa2nicrZuS1CZ3eeTXURda4aJuShjrGQ89kjuXoQgH6A/Pnw59hpRAqH6GyFfFD4jwTrkaXtZ2HTfZCd+v5CUfevdisSexqrO0HXwdHCtYmu+kFWaa9mT4VHDQEBO7t9jiZI5L2lJLtsU4hMU9JgE/ELInkUqDhMDt4HrzrpnPlHy4ER/CweXnhJK680Z2s8vVm2HB9VjGlKNCfAAUINteERbC//oBbRlrvoPMySI0A0Bayk19CbRsD9VVvZDKIhtJn4BMJROHqOuWtxNJIFz5tJjj7NCEyqODZAnC+IwnsLY8kH7d4gCJeoy+Y+aKDm14KNnsQQ6fabz6P+RZZBB0fmoxf6Bl38s/YljCnqQMXUpyIIJvWykXojp2oG0dE0Dzumz2TQmI88cuPyKNcYp1sgbr975ipKSGzStcy4GUIUHIoF9mKNt7SdTL6Eye1mgSbNeQ6Rlf3pRz5P8LJ+YWmyq3PcdJ/UkhfhTN7+Z8XCn7j6pSJVKKNNkqNcjE/VvNIjBV4Wu7iIhO2JHIRY/saq96xTyvFaybhpgGQDJrS3J2UrN3XCSb6y4Y6MRg3ct1Y3LgTRa+VNPHJnAUiUoUVPNKhBiqR2qNfl1E="
+      file: "../humanity-donations-salesforce-adapter-develop.zip"
+      skip_cleanup: true
+      draft: true
+      overwrite: true
+      on:
+        repo: amnestywebsite/humanity-donations-salesforce-adapter
+        branch: develop
+
+  - stage: Update Draft Release [STG]
+    script:
+    - cd private && yarn && yarn build && cd ..
+    - zip -r ../humanity-donations-salesforce-adapter-staging.zip ./ -x docs\* -x private\* -x vendor\* -x .\* -x CHANGELOG.md -x CODE_OF_CONDUCT.md -x composer.json -x composer.lock -x CONTRIBUTING.md -x LICENSE.md -x phpcs.xml -x SECURITY.md
+    deploy:
+      provider: releases
+      token:
+        secure: "OHbhgpXMyavB9AA6wdU9sSCC1AbTpCm01ZD9+buz7ti3JWmXeyK6GS80Liz76mdkOCuwwCa2nicrZuS1CZ3eeTXURda4aJuShjrGQ89kjuXoQgH6A/Pnw59hpRAqH6GyFfFD4jwTrkaXtZ2HTfZCd+v5CUfevdisSexqrO0HXwdHCtYmu+kFWaa9mT4VHDQEBO7t9jiZI5L2lJLtsU4hMU9JgE/ELInkUqDhMDt4HrzrpnPlHy4ER/CweXnhJK680Z2s8vVm2HB9VjGlKNCfAAUINteERbC//oBbRlrvoPMySI0A0Bayk19CbRsD9VVvZDKIhtJn4BMJROHqOuWtxNJIFz5tJjj7NCEyqODZAnC+IwnsLY8kH7d4gCJeoy+Y+aKDm14KNnsQQ6fabz6P+RZZBB0fmoxf6Bl38s/YljCnqQMXUpyIIJvWykXojp2oG0dE0Dzumz2TQmI88cuPyKNcYp1sgbr975ipKSGzStcy4GUIUHIoF9mKNt7SdTL6Eye1mgSbNeQ6Rlf3pRz5P8LJ+YWmyq3PcdJ/UkhfhTN7+Z8XCn7j6pSJVKKNNkqNcjE/VvNIjBV4Wu7iIhO2JHIRY/saq96xTyvFaybhpgGQDJrS3J2UrN3XCSb6y4Y6MRg3ct1Y3LgTRa+VNPHJnAUiUoUVPNKhBiqR2qNfl1E="
+      file: "../humanity-donations-salesforce-adapter-staging.zip"
+      skip_cleanup: true
+      draft: true
+      overwrite: true
+      on:
+        repo: amnestywebsite/humanity-donations-salesforce-adapter
+        branch: staging
+
+  - stage: Update Draft Release [PRD]
+    script:
+    - cd private && yarn && yarn build && cd ..
+    - zip -r ../humanity-donations-salesforce-adapter.zip ./ -x docs\* -x private\* -x vendor\* -x .\* -x CHANGELOG.md -x CODE_OF_CONDUCT.md -x composer.json -x composer.lock -x CONTRIBUTING.md -x LICENSE.md -x phpcs.xml -x SECURITY.md
+    deploy:
+      provider: releases
+      token:
+        secure: "OHbhgpXMyavB9AA6wdU9sSCC1AbTpCm01ZD9+buz7ti3JWmXeyK6GS80Liz76mdkOCuwwCa2nicrZuS1CZ3eeTXURda4aJuShjrGQ89kjuXoQgH6A/Pnw59hpRAqH6GyFfFD4jwTrkaXtZ2HTfZCd+v5CUfevdisSexqrO0HXwdHCtYmu+kFWaa9mT4VHDQEBO7t9jiZI5L2lJLtsU4hMU9JgE/ELInkUqDhMDt4HrzrpnPlHy4ER/CweXnhJK680Z2s8vVm2HB9VjGlKNCfAAUINteERbC//oBbRlrvoPMySI0A0Bayk19CbRsD9VVvZDKIhtJn4BMJROHqOuWtxNJIFz5tJjj7NCEyqODZAnC+IwnsLY8kH7d4gCJeoy+Y+aKDm14KNnsQQ6fabz6P+RZZBB0fmoxf6Bl38s/YljCnqQMXUpyIIJvWykXojp2oG0dE0Dzumz2TQmI88cuPyKNcYp1sgbr975ipKSGzStcy4GUIUHIoF9mKNt7SdTL6Eye1mgSbNeQ6Rlf3pRz5P8LJ+YWmyq3PcdJ/UkhfhTN7+Z8XCn7j6pSJVKKNNkqNcjE/VvNIjBV4Wu7iIhO2JHIRY/saq96xTyvFaybhpgGQDJrS3J2UrN3XCSb6y4Y6MRg3ct1Y3LgTRa+VNPHJnAUiUoUVPNKhBiqR2qNfl1E="
+      file: "../humanity-donations-salesforce-adapter.zip"
+      skip_cleanup: true
+      draft: true
+      overwrite: true
+      on:
+        repo: amnestywebsite/humanity-donations-salesforce-adapter
+        branch: main

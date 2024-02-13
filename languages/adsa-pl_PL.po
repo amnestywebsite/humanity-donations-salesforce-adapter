@@ -1,0 +1,260 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/donations-"
+"salesforce-adapter\n"
+"POT-Creation-Date: 2024-02-13T13:01:31+00:00\n"
+"PO-Revision-Date: 2020-02-27 16:31+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: pl_PL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2.4\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 "
+"|| n%100>14) ? 1 : 2);\n"
+
+#. Plugin Name of the plugin
+msgid "Humanity Donations Salesforce Adapter"
+msgstr ""
+
+#. Plugin URI of the plugin
+msgid "https://github.com/amnestywebsite/humanity-donations-salesforce-adapter"
+msgstr ""
+
+#. Description of the plugin
+msgid "Add Salesforce data synchronisation to the Humanity Donations plugin"
+msgstr ""
+
+#. Author of the plugin
+msgid "Amnesty International"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://www.amnesty.org"
+msgstr "https://www.amnesty.org"
+
+#. translators: %1$s: the name of this plugin, %2$s: list of missing plugins
+#: amnesty-donations-salesforce-adapter.php:141
+msgid "%1$s requires these plugins to be active: %2$s"
+msgstr ""
+
+#: includes/class-fields.php:41
+msgid "The Donor's Salesforce ID"
+msgstr ""
+
+#: includes/class-fields.php:42
+msgid "The Donation's Salesforce ID"
+msgstr ""
+
+#: includes/class-fields.php:43 messages/default-info.php:9
+msgid "Billing First Name"
+msgstr "Imię"
+
+#: includes/class-fields.php:44 messages/default-info.php:10
+msgid "Billing Last Name"
+msgstr "Nazwisko płatnika"
+
+#: includes/class-fields.php:45 messages/default-info.php:11
+msgid "Billing Email Address"
+msgstr "Rozliczeniowy adres e-mail"
+
+#: includes/class-fields.php:46
+msgid "Billing Phone Number"
+msgstr "Rozliczeniowy numer telefonu"
+
+#: includes/class-fields.php:47 messages/default-info.php:13
+msgid "Billing Address Line 1"
+msgstr "Wiersz adresu rozliczeniowego 1"
+
+#: includes/class-fields.php:48 messages/default-info.php:14
+msgid "Billing Address Line 2"
+msgstr "Wiersz adresu rozliczeniowego 2"
+
+#: includes/class-fields.php:49 messages/default-info.php:15
+msgid "Billing Address City"
+msgstr "Miasto adresu rozliczeniowego"
+
+#: includes/class-fields.php:50 messages/default-info.php:16
+msgid "Billing Address State"
+msgstr "Stan adresu rozliczeniowego"
+
+#: includes/class-fields.php:51 messages/default-info.php:17
+msgid "Billing Address Postcode"
+msgstr "Kod pocztowy adresu rozliczeniowego"
+
+#: includes/class-fields.php:52 messages/default-info.php:18
+msgid "Billing Address Country"
+msgstr "Kraj adresu rozliczeniowego"
+
+#: includes/class-fields.php:53
+msgid "Transaction ID"
+msgstr "Id transkacji"
+
+#: includes/class-fields.php:54
+msgid "Payment Method"
+msgstr "Metoda płatności"
+
+#: includes/class-fields.php:55
+msgid "Purchase Date"
+msgstr "Data zakupu"
+
+#: includes/class-fields.php:56
+msgid "Order Number"
+msgstr "Numer zamówienia"
+
+#: includes/class-fields.php:57
+msgid "Order Summary"
+msgstr "Podsumowanie zamówienia"
+
+#: includes/class-fields.php:58
+msgid "Order Status"
+msgstr "Status zamówienia"
+
+#: includes/class-fields.php:59
+msgid "Order Total"
+msgstr "Suma zamówienia"
+
+#: includes/class-fields.php:60
+msgid "Chosen Campaign"
+msgstr "Wybrana kampania"
+
+#: includes/class-fields.php:61
+msgid "User Locale"
+msgstr "Ustawienia regionalne użytkownika"
+
+#. translators: %1$s: order ID, %2$s transaction ID
+#: includes/class-fields.php:117
+msgid "Order: %1$s; Transaction: %2$s"
+msgstr "Kolejność: %1$s; Transakcja: %2$s"
+
+#: includes/class-page-settings.php:82 includes/class-page-settings.php:231
+msgid "Donor"
+msgstr "Darczyńca"
+
+#: includes/class-page-settings.php:83
+msgid "Settings for synchronising donor information to Salesforce"
+msgstr "Ustawienia synchronizacji informacji o darczyńcach z Salesforce"
+
+#: includes/class-page-settings.php:96 includes/class-page-settings.php:149
+#: includes/class-page-settings.php:225 includes/class-page-settings.php:280
+msgid "Salesforce Object type"
+msgstr "Salesforce"
+
+#: includes/class-page-settings.php:97
+msgid "Select which Salesforce Object the donor should be stored as"
+msgstr "Wybierz obiekt Salesforce, który dawca powinien być przechowywany jako"
+
+#: includes/class-page-settings.php:138 includes/class-page-settings.php:230
+msgid "Donation"
+msgstr "Dotacja"
+
+#: includes/class-page-settings.php:139
+msgid "Settings for synchronising order information to Salesforce"
+msgstr "Ustawienia synchronizacji informacji o zamówieniach z Salesforce"
+
+#: includes/class-page-settings.php:150
+msgid "Select which Salesforce Object the donation should be stored as"
+msgstr ""
+"Wybierz obiekt Salesforce, który darowizna powinna być przechowywana jako"
+
+#: includes/class-page-settings.php:196
+msgid "Relationship"
+msgstr ""
+
+#: includes/class-page-settings.php:197
+msgid "Settings for synchronising donation to donor relationship to Salesforce"
+msgstr ""
+
+#: includes/class-page-settings.php:207
+msgid "Configure Relationship"
+msgstr ""
+
+#: includes/class-page-settings.php:208
+msgid "How is the relationship between a donation and a donor defined?"
+msgstr ""
+
+#: includes/class-page-settings.php:211
+msgid "Object"
+msgstr ""
+
+#: includes/class-page-settings.php:212
+msgid "Field"
+msgstr ""
+
+#: includes/class-page-settings.php:226
+msgid "Should the field be set on the donation object or the donor object?"
+msgstr ""
+
+#: includes/class-page-settings.php:247
+msgid "Salesforce Object field"
+msgstr ""
+
+#: includes/class-page-settings.php:248
+msgid "Select the field to be used for the relationship"
+msgstr ""
+
+#: includes/class-page-settings.php:263
+msgid "Field value"
+msgstr ""
+
+#: includes/class-page-settings.php:264
+msgid "Select the field to be used as the value of the Object field"
+msgstr ""
+
+#: includes/class-page-settings.php:281
+msgid "Select which Salesforce Object the relationship should be stored as"
+msgstr ""
+
+#: messages/default-info.php:1
+msgid "Default Configuration"
+msgstr "Domyślna Konfiguracja"
+
+#: messages/default-info.php:3
+msgid "Donors (Users)"
+msgstr "Darczyńcy (Użytkownicy)"
+
+#: messages/default-info.php:5
+msgid "Users who make donations are stored as \"Contact\" Objects."
+msgstr ""
+
+#: messages/default-info.php:6
+msgid ""
+"This is in place to make the plugin easier to configure, but all settings "
+"are manageable below."
+msgstr ""
+
+#: messages/default-info.php:7
+msgid "Form fields stored are:"
+msgstr ""
+
+#: messages/default-info.php:12
+msgid "Billing Telephone (optionally)"
+msgstr "Telefon rozliczeniowy (opcjonalnie)"
+
+#: messages/default-info.php:19
+msgid "Donor Locale"
+msgstr "Ustawienia regionalne dawców"
+
+#: messages/default-info.php:22
+msgid "Donations (Purchases)"
+msgstr "Darowizny (zakupy)"
+
+#: messages/default-info.php:23
+msgid "The donation object must be configured manually."
+msgstr ""
+
+#: messages/default-info.php:24
+msgid "Donation <=> Donor Relationships"
+msgstr "Darowizna <=> Relacje darczyńców"
+
+#: messages/default-info.php:25
+msgid ""
+"The relationship between a Donation and a Donor must be declared manually."
+msgstr ""
+
+#: private/src/app.js:53
+msgid "Please save your settings to load the field list for this object."
+msgstr "Zapisz ustawienia, aby załadować listę pól dla tego obiektu."
