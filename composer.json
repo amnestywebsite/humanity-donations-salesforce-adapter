@@ -14,13 +14,10 @@
   "scripts": {
     "lint": "./vendor/bin/phpcs .",
     "lang": [
-      "type msgmerge &> /dev/null || { echo 'Please install gettext'; exit 1; }",
-      "wp i18n make-pot . ./languages/adsa.pot --domain=adsa --exclude=private/node_modules,assets,vendor",
-      "for p in ./languages/*.po; do msguniq \"$p\" -o \"$p\"; done",
-      "for p in ./languages/*.po; do msgmerge --quiet -o \"$p.tmp\" --no-fuzzy-matching \"$p\" \"./languages/adsa.pot\"; done",
-      "for p in ./languages/*.po; do msgattrib --no-obsolete -o \"$p\" \"$p.tmp\"; done",
-      "for p in ./languages/*.po.tmp; do rm \"$p\"; done",
-      "for p in ./languages/*.po; do msgfmt -cv --statistics \"$p\" -o \"${p%.*}.mo\"; done"
+      "wp i18n make-pot . ./languages/adsa.pot --domain=adsa --exclude=private,vendor",
+      "wp i18n update-po ./languages/adsa.pot",
+      "wp i18n make-mo ./languages",
+      "wp i18n make-json ./languages --no-purge"
     ]
   },
   "scripts-descriptions": {
