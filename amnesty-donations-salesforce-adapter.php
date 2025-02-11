@@ -1,25 +1,26 @@
 <?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName
 
+/**
+ * Plugin Name:       Humanity Donations Salesforce Adapter
+ * Plugin URI:        https://github.com/amnestywebsite/humanity-donations-salesforce-adapter
+ * Description:       Add Salesforce data synchronisation to the Humanity Donations plugin
+ * Version:           1.0.0
+ * Author:            Amnesty International
+ * Author URI:        https://www.amnesty.org
+ * License:           GPL-2.0-or-later
+ * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+ * Text Domain:       adsa
+ * Domain Path:       /languages
+ * Network:           true
+ * Requires PHP:      8.2
+ * Requires at least: 5.8.0
+ * Tested up to:      6.6.2
+ * Requires Plugins:  humanity-donations, humanity-salesforce-connector
+ */
+
 declare( strict_types = 1 );
 
 namespace Amnesty\Donations\Salesforce;
-
-/*
-Plugin Name:       Humanity Donations Salesforce Adapter
-Plugin URI:        https://github.com/amnestywebsite/humanity-donations-salesforce-adapter
-Description:       Add Salesforce data synchronisation to the Humanity Donations plugin
-Version:           1.0.0
-Author:            Amnesty International
-Author URI:        https://www.amnesty.org
-License:           GPLv2
-License URI:       https://www.gnu.org/licenses/gpl-2.0.html
-Text Domain:       adsa
-Domain Path:       /languages
-Network:           true
-Requires PHP:      8.2
-Requires at least: 5.8.0
-Tested up to:      6.4.2
-*/
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -51,20 +52,6 @@ class Init {
 	public static $file = __FILE__;
 
 	/**
-	 * List of dependent plugins
-	 *
-	 * @var array
-	 */
-	protected static $dependencies = [
-		'amnesty-donations.php'            => 'Amnesty International Donations',
-		'amnesty-salesforce-connector.php' => 'Amnesty International Salesforce Connector',
-		'woocommerce.php'                  => 'WooCommerce',
-		'woocommerce-checkout-manager.php' => 'WooCommerce Checkout Manager',
-		'woocommerce-name-your-price.php'  => 'WooCommerce Name Your Price',
-		'woocommerce-subscriptions.php'    => 'WooCommerce Subscriptions',
-	];
-
-	/**
 	 * Plugin data
 	 *
 	 * @var array
@@ -78,8 +65,6 @@ class Init {
 		$this->data = get_plugin_data( __FILE__ );
 
 		add_filter( 'register_translatable_package', [ $this, 'register_translatable_package' ], 12 );
-
-		add_action( 'all_admin_notices', [ $this, 'check_dependencies' ] );
 
 		add_action( 'plugins_loaded', [ $this, 'textdomain' ] );
 		add_action( 'plugins_loaded', [ $this, 'boot' ] );
@@ -105,41 +90,6 @@ class Init {
 		];
 
 		return $packages;
-	}
-
-	/**
-	 * Output warning & deactivate if dependent plugins aren't active
-	 *
-	 * @return void
-	 */
-	public function check_dependencies(): void {
-		$plugins = get_option( 'active_plugins' );
-		if ( is_multisite() ) {
-			$plugins = array_keys( get_site_option( 'active_sitewide_plugins' ) );
-		}
-
-		$plugins = array_unique( array_map( 'basename', $plugins ) );
-		$missing = array_diff( array_keys( static::$dependencies ), $plugins );
-
-		if ( empty( $missing ) && function_exists( 'cmb2_bootstrap' ) ) {
-			return;
-		}
-
-		$missing_labels = [];
-		foreach ( $missing as $key ) {
-			$missing_labels[] = static::$dependencies[ $key ];
-		}
-
-		$missing = implode( ', ', $missing_labels );
-
-
-		if ( ! function_exists( 'cmb2_bootstrap' ) ) {
-			$missing .= ', CMB2';
-		}
-
-		// translators: %1$s: the name of this plugin, %2$s: list of missing plugins
-		printf( '<div class="notice notice-error"><p>%s</p></div>', sprintf( esc_html__( '%1$s requires these plugins to be active: %2$s', 'adsa' ), esc_html( $this->data['Name'] ), esc_html( $missing ) ) );
-		deactivate_plugins( plugin_basename( __FILE__ ), false, is_multisite() );
 	}
 
 	/**
