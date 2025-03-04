@@ -14,7 +14,7 @@
  * Network:           true
  * Requires PHP:      8.2
  * Requires at least: 5.8.0
- * Tested up to:      6.6.2
+ * Tested up to:      6.7.2
  * Requires Plugins:  humanity-donations, humanity-salesforce-connector
  */
 
