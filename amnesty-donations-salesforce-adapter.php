@@ -4,7 +4,7 @@
  * Plugin Name:       Humanity Donations Salesforce Adapter
  * Plugin URI:        https://github.com/amnestywebsite/humanity-donations-salesforce-adapter
  * Description:       Add Salesforce data synchronisation to the Humanity Donations plugin
- * Version:           1.0.0
+ * Version:           1.0.1
  * Author:            Amnesty International
  * Author URI:        https://www.amnesty.org
  * License:           GPL-2.0-or-later
@@ -14,7 +14,7 @@
  * Network:           true
  * Requires PHP:      8.2
  * Requires at least: 5.8.0
- * Tested up to:      6.6.2
+ * Tested up to:      6.7.2
  * Requires Plugins:  humanity-donations, humanity-salesforce-connector
  */
 
