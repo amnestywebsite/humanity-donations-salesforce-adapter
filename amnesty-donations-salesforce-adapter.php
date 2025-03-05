@@ -15,7 +15,7 @@
  * Requires PHP:      8.2
  * Requires at least: 5.8.0
  * Tested up to:      6.7.2
- * Requires Plugins:  humanity-donations, humanity-salesforce-connector
+ * Requires Plugins:  humanity-donations-develop, humanity-salesforce-connector-develop
  */
 
 declare( strict_types = 1 );
