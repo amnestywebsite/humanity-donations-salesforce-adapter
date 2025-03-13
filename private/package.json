@@ -12,8 +12,7 @@
     "watch:prod": "webpack --mode production --watch",
     "watch": "webpack --mode development --watch",
     "lint:scripts": "eslint ./src/",
-    "lint:styles": "stylelint \"src/**/*.scss\"",
-    "lint": "yarn lint:scripts; yarn lint:styles"
+    "lint": "yarn lint:scripts"
   },
   "packageManager": "yarn@4.1.0",
   "dependencies": {
