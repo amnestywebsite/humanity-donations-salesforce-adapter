@@ -1,3 +1,8 @@
+### v1.0.2
+
+CI:
+- Migrate from Travis CI to GitHub Actions
+
 ### v1.0.1
 
 Misc:
