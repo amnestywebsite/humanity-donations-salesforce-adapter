@@ -1,4 +1,7 @@
 # Amnesty Donations Salesforce Adapter
+
+This plugin is no longer supported, as the donations plugin it integrates with has been superseded by a [new donations plugin](https://github.com/amnestywebsite/humanity-stripe-donations/) that does not rely upon WooCommerce.
+
 This is a companion plugin for the primary [Humanity Donations](https://github.com/amnestywebsite/humanity-donations) plugin, which adds support for submitting donation data directly to Salesforce via their HTTP REST API, instead of storing it within the WP database.  
 
 ## Minimum Requirements
